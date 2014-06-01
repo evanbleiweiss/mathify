@@ -23,6 +23,7 @@ get '/problem.json' do
 end
 
 get '/problem' do
+  @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
   haml :problem
 end
 
