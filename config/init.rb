@@ -19,12 +19,3 @@ end
 
 #Add our data (tours & dates) from the file config/data.rb
 require './config/data'
-
-post '/difficulty' do
-  
-end
-
-get '/multiply' do
-  Problem.new(@difficulty, @category)
-
-end
