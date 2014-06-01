@@ -17,5 +17,6 @@ gem 'sinatra-sequel'
 # end
 
 gem 'haml'
-gem 'json'
+gem 'sinatra-contrib'
 gem 'jazz_hands'
+gem 'shotgun'

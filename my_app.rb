@@ -6,9 +6,10 @@ require 'rubygems'
 require 'sinatra'
 
 # This app requires
+require "sinatra/json"
 require 'haml'
-require 'json'
 require 'pry'
+# require "sinatra/reloader" if development?
 
 require './config/init.rb'
 
@@ -17,12 +18,8 @@ get '/' do
 end
 
 get '/problem.json' do 
-  content_type :json
   @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
-  # binding.pry
-  # { :key1 => 'value1', :key2 => 'value2' }.to_json
-  # @problem.to_a.map { |k,v| { k: v} }.to_json 
-  @problem.to_json 
+  json @problem.generate_problem
 end
 
 get '/problem' do
