@@ -1,6 +1,5 @@
 require 'sinatra'
-require 'sinatra/sequel'
-# switch to postgres for Heroku
+require 'sinatra/sequel' # switch to postgres for Heroku
  
 # configure :development do
 #   set :database, 'sqlite://development/my_app.db'

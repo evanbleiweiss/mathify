@@ -5,11 +5,11 @@
 require 'rubygems'
 require 'sinatra'
 
-# This app requires
+# # This app requires
 require "sinatra/json"
 require 'haml'
 require 'pry'
-# require "sinatra/reloader" if development?
+require "sinatra/reloader" if development?
 
 require './config/init.rb'
 
@@ -17,15 +17,22 @@ get '/' do
   haml :index
 end
 
-get '/problem.json' do 
+get '/problem.?:format?' do 
+  @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
+  @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
+end
+
+get '/problem.json/:category' do
   @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
   json @problem.generate_problem
 end
 
-get '/problem' do
-  @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
-  haml :problem
-end
+
+# get '/problem' do
+#   @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
+#   haml :problem
+# end
+
 
 get '/difficulty' do
   haml :difficulty

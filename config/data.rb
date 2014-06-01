@@ -49,13 +49,6 @@ class Problem
     format_question
   end
 
-  # def multiplication_result
-  #   @operands.each do |number|
-  #     result = number unless result
-  #       result *= number 
-  #   end
-  # end
-
   def number_of_variables
     @difficulty_level.first
   end
