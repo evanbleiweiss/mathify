@@ -30,8 +30,8 @@
 PROBLEM_CATEGORIES = ['Addition', 'Subtraction', 'Multiplication', 'Division', 'Primes']
 DIFFICULTY_LEVELS = { 'easy' => [2, 10], 'medium' => [3, 10], 'hard' => [3, 100], 'tough' => [3, 1000] }
 class Problem
-  def initialize difficulty_level: 'easy', category: 'addition', *args
-    @known_operands = known_operands || []
+  def initialize difficulty_level: 'easy', category: 'addition', known_operands: []
+    @known_operands = known_operands 
     @difficulty_level = set_difficulty(difficulty_level)
     @category = category || ''
   end
@@ -43,7 +43,9 @@ class Problem
 
   def generate_problem
     @operands =  []
+    # @operands << @known_operands
     number_of_variables.times { @operands << rand(@difficulty_level.last) }
+    # @operands.flatten
     format_question
   end
 
@@ -62,8 +64,8 @@ end
 
 class Multiply < Problem
   def initialize *args
-    @category = 'multiplication'
     super
+    @category = 'multiplication'
   end
 
   def format_question

@@ -2,12 +2,12 @@
 # want to develop while running with ruby.
 # The config/rackup.ru requires these as well
 # for it's own reasons.
-#
-# $ ruby heroku-sinatra-app.rb
-#
 require 'rubygems'
 require 'sinatra'
+
+# This app requires
 require 'haml'
+require 'json'
 require 'pry'
 
 require './config/init.rb'
@@ -16,10 +16,16 @@ get '/' do
   haml :index
 end
 
-get '/problem' do 
-  # content_type :json
-  @problem = Multiply.new(difficulty_level: 'medium')
-  # @problem.to_json
+get '/problem.json' do 
+  content_type :json
+  @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
+  # binding.pry
+  # { :key1 => 'value1', :key2 => 'value2' }.to_json
+  # @problem.to_a.map { |k,v| { k: v} }.to_json 
+  @problem.to_json 
+end
+
+get '/problem' do
   haml :problem
 end
 

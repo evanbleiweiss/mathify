@@ -1,3 +1,9 @@
+# Usage:
+
+```
+$ ruby my_app.rb
+```
+
 # Heroku Sinatra MVC
 
 I love Sinatra for writing quick and easy web apps in a snap. I also
