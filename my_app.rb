@@ -7,12 +7,26 @@
 #
 require 'rubygems'
 require 'sinatra'
+require 'haml'
+require 'pry'
 
 require './config/init.rb'
 
-# Quick test
 get '/' do
   haml :index
+end
+
+get '/problem' do 
+  @problem = Problem.new(difficulty_level: 'medium', category: 'multiplication')
+  haml :problem
+end
+
+get '/difficulty' do
+  haml :difficulty
+end
+
+post '/difficulty' do
+  Problem.set_difficulty(params[:difficulty])
 end
 
 # Test at <appname>.heroku.com

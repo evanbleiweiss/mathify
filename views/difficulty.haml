@@ -1,0 +1,6 @@
+%form#difficulty{ action: "/difficulty", method: "post" }
+  %select
+    :ruby
+      DIFFICULTY_LEVELS.each do |level|
+        %option{value: level.key}level.key
+      end
