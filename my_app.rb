@@ -17,7 +17,9 @@ get '/' do
 end
 
 get '/problem' do 
-  @problem = Problem.new(difficulty_level: 'medium', category: 'multiplication')
+  # content_type :json
+  @problem = Multiply.new(difficulty_level: 'medium')
+  # @problem.to_json
   haml :problem
 end
 

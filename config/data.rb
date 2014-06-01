@@ -30,11 +30,10 @@
 PROBLEM_CATEGORIES = ['Addition', 'Subtraction', 'Multiplication', 'Division', 'Primes']
 DIFFICULTY_LEVELS = { 'easy' => [2, 10], 'medium' => [3, 10], 'hard' => [3, 100], 'tough' => [3, 1000] }
 class Problem
-  def initialize difficulty_level: 'easy', category: 'addition'
-    @known_operands = []
+  def initialize difficulty_level: 'easy', category: 'addition', *args
+    @known_operands = known_operands || []
     @difficulty_level = set_difficulty(difficulty_level)
     @category = category || ''
-    generate_problem
   end
 
   def set_difficulty(level)
@@ -59,11 +58,19 @@ class Problem
     @difficulty_level.first
   end
 
-  def format_question
-    @operands.join(" * ")
-  end
 end
 
 class Multiply < Problem
+  def initialize *args
+    @category = 'multiplication'
+    super
+  end
 
+  def format_question
+    @operands.join(" * ")
+  end
+
+  def multiply(numbers)
+    numbers.inject(&:*)
+  end
 end
