@@ -92,7 +92,7 @@ class Multiply < Problem
   end
 end
 
-class Addition
+class Addition < Problem
 
   def addition(operands)
     operands.inject(&:+)
@@ -100,7 +100,7 @@ class Addition
 
 end
 
-class Subtract
+class Subtract < Problem
 	
   def subtraction(operands)
     operands.inject(&:-)
@@ -108,7 +108,7 @@ class Subtract
 
 end
 
-class Divide
+class Divide < Problem
 
   def division(operands)
     operands.inject(&:/)
@@ -116,7 +116,7 @@ class Divide
 
 end
 
-class Exponent
+class Exponent < Problem
 
   def exponents(operands)
     operands.inject(&:**)
@@ -124,7 +124,7 @@ class Exponent
 
 end
 
-class Prime
+class Prime < Problem
 
   def primes(operands)
     n = operands.first
