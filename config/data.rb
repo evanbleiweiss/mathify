@@ -69,7 +69,11 @@ class Problem
     @difficulty_level.first
   end
 
-  def question_generator
+ # def question_generator
+ # end
+
+  def format_question
+    @operands.join(" #{@symbol} ")
   end
 
   def compute_result(operands,category)
@@ -81,11 +85,10 @@ class Multiply < Problem
   def initialize *args
     super
     @category = 'multiplication'
+    @symbol = "*"
   end
 
-  def format_question
-    @operands.join(" * ")
-  end
+  
 
   def multiply(numbers)
     numbers.inject(&:*)
@@ -93,6 +96,10 @@ class Multiply < Problem
 end
 
 class Addition < Problem
+  def initialize *args
+    super
+    @symbol = "+"
+  end
 
   def addition(operands)
     operands.inject(&:+)
@@ -101,7 +108,11 @@ class Addition < Problem
 end
 
 class Subtract < Problem
-	
+	def initialize *args
+    super
+    @symbol = "-"
+  end
+  
   def subtraction(operands)
     operands.inject(&:-)
   end
@@ -109,7 +120,11 @@ class Subtract < Problem
 end
 
 class Divide < Problem
-
+  def initialize *args
+    super
+    @symbol = "/"
+  end
+  
   def division(operands)
     operands.inject(&:/)
   end
