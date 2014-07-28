@@ -72,8 +72,8 @@ class Problem
   def question_generator
   end
 
-  def compute_result(@operands,@category)
-    send(@category, @operands)
+  def compute_result(operands,category)
+    send(category, operands)
   end
 end
 
