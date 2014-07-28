@@ -17,9 +17,21 @@ get '/' do
   haml :index
 end
 
-get '/problem.?:format?' do 
-  @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
-  @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
+#naive implementation for url routing, problem type
+# get '/problem/subtract.?:format?' do 
+#   @problem = Subtract.new(difficulty_level: 'medium', known_operands: [3])
+#   @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
+# end
+
+# get '/problem/multiply.?:format?' do 
+#   @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
+#   @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
+# end
+
+# THIS SHIT DOESNT WORK
+get '/problem/:type' do 
+  @problem = params[:type].new(difficulty_level: 'medium', known_operands: [3])
+  haml(:problem)
 end
 
 get '/problem.json/:category' do

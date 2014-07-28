@@ -88,8 +88,6 @@ class Multiply < Problem
     @symbol = "*"
   end
 
-  
-
   def multiply(numbers)
     numbers.inject(&:*)
   end
