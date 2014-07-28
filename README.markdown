@@ -4,6 +4,14 @@
 $ ruby my_app.rb
 ```
 
+## to do list
+
+- [] manage symbols for differnt problem types
+- [] figure out the routing for the different problems in the URL \problem\add 
+- [] accept user input for answers
+- [] figure out how to display hints
+
+
 # Heroku Sinatra MVC
 
 I love Sinatra for writing quick and easy web apps in a snap. I also
