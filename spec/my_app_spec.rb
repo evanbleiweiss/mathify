@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-describe "My App" do
+describe "Mathsosaurus" do
   include Rack::Test::Methods
 
   def app
@@ -11,4 +11,5 @@ describe "My App" do
     get '/'
     last_response.should be_ok
   end
+
 end

@@ -4,6 +4,13 @@
 $ ruby my_app.rb
 ```
 
+# Tests
+
+```
+$ guard
+> rspec
+```
+
 ## to do list
 
 - [ ] manage symbols for differnt problem types
