@@ -2,9 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Problem do
   context 'A new problem' do
-    it 'starts with an empty set of (operands)' do
-      expect(subject.instance_variable_get(:@known_operands)).to eq([])
-    end
+    specify { expect(subject.instance_variable_get(:@known_operands)).to eq([]) }
 
     specify { expect(subject.instance_variable_get(:@difficulty_level)).to eq('easy') }
     specify { expect(subject.instance_variable_get(:@operator)).to eq('addition') }
