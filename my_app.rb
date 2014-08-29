@@ -28,11 +28,12 @@ end
 #   @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
 # end
 
-get '/problem/:type/:difficulty' do 
-  @problem = Problem.new(operator: params[:type], difficulty_level: params[:difficulty])
-  # binding.pry
+get '/problem/:type/:difficulty/?:operands' do 
+  operands = params[:operands].to_i
+  # operands = %w(params[:operands]) #optional params don't need to be specified
+
+  @problem = Problem.new(operator: params[:type], difficulty_level: params[:difficulty], known_operands: [operands])
   @problem.operand_generator
-  # @problem.operation_time
   haml(:problem)
 end
 

@@ -23,7 +23,7 @@ class Problem
   def initialize difficulty_level: 'easy', operator: 'addition', known_operands: []
     @known_operands = known_operands 
     @difficulty_level = difficulty_level
-    @operator = operator.to_sym || ''
+    @operator = operator.to_sym
     @operands = []
   end
 
