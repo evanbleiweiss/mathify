@@ -1,22 +1,28 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Problem do
-  subject do
-    Problem.new
+  context 'A new problem' do
+    subject { Problem.new }
+
+    it 'starts with an empty set of (operands)' do
+      expect(subject.instance_variable_get(:@known_operands)).to eq([])
+    end
+
+    specify { expect(subject.instance_variable_get(:@difficulty_level)).to eq('easy') }
   end
 
-  it 'returns a set of numbers for use (operands)' do
-    expect(@known_operands.kind_of?(Array)).to be_true 
-  end
+  context 'Setting problem constraints' do
+    subject { Problem.new(difficulty_level: 'medium', known_operands: [3,4]) }
 
-  it 'accepts known numbers for use' do
+    specify { expect(subject.instance_variable_get(:@known_operands)).to match_array([3, 4]) }
+    
+    specify { expect(subject.instance_variable_get(:@difficulty_level)).to eq('medium') }
+
   end
 
   describe "creating a problem set" do
-    it 'has a difficulty level' do
-    end
-    it 'uses the right operator' do
-    end
+    it 'has a difficulty level'
+    it 'uses the specified operator'
   end
 end
 

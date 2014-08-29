@@ -48,14 +48,22 @@ PRIME_NUMBER = {'hint0' =>'0,1 are not primes', 'hint1'=> '2 is the only even pr
 class Problem
   def initialize difficulty_level: 'easy', category: 'addition', known_operands: []
     @known_operands = known_operands 
-    @difficulty_level = set_difficulty(difficulty_level)
+    @difficulty_level = difficulty_level
     @category = category || ''
   end
 
-  def set_difficulty(level)
+  def configure_operand_generator(level)
       # DIFFICULTY_LEVELS.has_key?(difficulty)
-      @difficulty_level = DIFFICULTY_LEVELS[level]
+      generator_params = DIFFICULTY_LEVELS[level]
   end 
+
+  # def known_operands(operands = [])
+  #   operands
+  # end
+
+  def known_operands?
+    @known_operands.nil?
+  end
 
   def generate_problem
     @operands =  []
