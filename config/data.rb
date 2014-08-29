@@ -1,33 +1,7 @@
-# Sample code borrowed from https://github.com/Mercurius3/vrijewadlopers/blob/master/config/data.rb
-# 
-# class Calendar < Sequel::Model
-#   calenders = database[:calendars]
-#   calenders.delete
-#
-#   many_to_one :tour
-# end
-#
-# class Tour < Sequel::Model
-#   tours = database[:tours]
-#   tours.delete
-#
-#   one_to_many :calendars
-# end
-#
-# def createTour(info,dates)
-#   tour = Tour.create(info)
-#   dates.each do |date,info|
-#     calendar = Calendar.create(:date => date, :info => info)
-#     tour.add_calendar(calendar)
-#     calendar.save
-#   end
-#   tour.save
-# end
-
 # Generate problems for evaluation
 # Problems can match on one or more problem categories
 
-PROBLEM_CATEGORIES = ['Addition', 'Subtraction', 'Multiplication', 'Division', 'Primes']
+OPERATORS = { addition: :+, subtraction: :-, multiplication: :*, division: :/, modulo: :%, primes: :^ }
 DIFFICULTY_LEVELS = { 'easy' => [2, 10], 'medium' => [3, 10], 'hard' => [3, 100], 'tough' => [3, 1000] }
 MULTIPLICATION_AIDE = {'hint0'=>'If you have at least one even operand, your product will be even. 
 	If you have two odd operands, your product will be odd.', 'hint1'=> 'If an operand is multiplied by 0, the product will be 0',
@@ -73,6 +47,20 @@ class Problem
   def compute_result(operands,operator)
     send(operator, operands)
   end
+
+
+  class Subtract < Problem
+	def initialize *args
+    super
+    @symbol = "-"
+  end
+  
+  def subtraction(operands)
+    operands.inject(&:-)
+  end
+
+end
+
 end
 
 class Multiply < Problem
@@ -99,17 +87,6 @@ class Addition < Problem
 
 end
 
-class Subtract < Problem
-	def initialize *args
-    super
-    @symbol = "-"
-  end
-  
-  def subtraction(operands)
-    operands.inject(&:-)
-  end
-
-end
 
 class Divide < Problem
   def initialize *args
