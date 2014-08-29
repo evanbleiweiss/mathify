@@ -9,7 +9,7 @@ end
 
 group :test do
   gem 'sqlite3'
-  gem 'rspec'
+  gem 'rspec', '~> 3.0.0'
   gem 'rack-test'
 end
 

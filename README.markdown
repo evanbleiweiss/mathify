@@ -1,7 +1,12 @@
+# Installation
+```
+$ bundle install
+```
+
 # Usage:
 
 ```
-$ ruby my_app.rb
+$ shotgun my_app.rb
 ```
 
 # Tests
@@ -10,6 +15,8 @@ $ ruby my_app.rb
 $ guard
 > rspec
 ```
+
+This should automatically run every time watched files are updated (written)
 
 ## to do list
 

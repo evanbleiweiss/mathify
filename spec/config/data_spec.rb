@@ -11,6 +11,8 @@ describe Problem do
   context 'Setting problem constraints' do
     subject { Problem.new(difficulty_level: 'medium') }
 
+    it { expect(subject).to be_instance_of Problem }
+
     describe '.operand_generator' do
       context 'with known_operands' do
         let(:problem) { Problem.new(difficulty_level: 'medium', known_operands: [3,4]) }
@@ -39,9 +41,10 @@ describe Problem do
     end
   end
 
-  describe '.generate_problem' do
+  describe '.subtraction' do
     let(:operator) { 'subtraction' }
     it 'uses the specified operator'
+    it {}
   end
 end
 
