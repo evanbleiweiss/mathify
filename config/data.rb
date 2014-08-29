@@ -29,8 +29,7 @@ class Problem
 
   def operand_generator
     generator_config = DIFFICULTY_LEVELS[@difficulty_level]
-    @operands << @known_operands unless @known_operands.empty?
-    @operands.flatten! 
+    @operands.concat(@known_operands) unless @known_operands.empty?
     while @operands.length < generator_config[0] do 
        @operands << rand(generator_config[1])  #Note: this doesn't trim ops if too many are specified
     end
@@ -40,26 +39,19 @@ class Problem
     @difficulty_level.first
   end
 
-  def format_question
-    @operands.join(" #{@symbol} ")
+  def format_question(symbol)
+    @operands.join(" #{symbol} ")
   end
 
-  def compute_result(operands,operator)
-    send(operator, operands)
-  end
+  # def compute_result(operands,operator)
+  #   send(operator, operands)
+  # end
 
 
-  class Subtract < Problem
-	def initialize *args
-    super
-    @symbol = "-"
-  end
-  
-  def subtraction(operands)
-    operands.inject(&:-)
-  end
+  def subtraction
 
-end
+    @operands.inject(&:-)
+  end
 
 end
 
