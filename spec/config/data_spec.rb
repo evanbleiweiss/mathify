@@ -5,7 +5,7 @@ describe Problem do
     specify { expect(subject.instance_variable_get(:@known_operands)).to eq([]) }
 
     specify { expect(subject.instance_variable_get(:@difficulty_level)).to eq('easy') }
-    specify { expect(subject.instance_variable_get(:@operator)).to eq('addition') }
+    specify { expect(subject.instance_variable_get(:@operator)).to eq(:addition) }
   end
 
   context 'Setting problem constraints' do

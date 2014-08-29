@@ -23,7 +23,7 @@ class Problem
   def initialize difficulty_level: 'easy', operator: 'addition', known_operands: []
     @known_operands = known_operands 
     @difficulty_level = difficulty_level
-    @operator = operator || ''
+    @operator = operator.to_sym || ''
     @operands = []
   end
 
@@ -35,8 +35,9 @@ class Problem
     end
   end 
   
-  def format_question(symbol)
-    @operands.join(" #{symbol} ")
+  def format_question
+    operator = OPERATORS[@operator]
+    @operands.join(" #{operator} ")
   end
 
   # def compute_result(operands,operator)
