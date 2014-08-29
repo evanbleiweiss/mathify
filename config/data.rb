@@ -35,10 +35,6 @@ class Problem
     end
   end 
   
-  def number_of_variables
-    @difficulty_level.first
-  end
-
   def format_question(symbol)
     @operands.join(" #{symbol} ")
   end
