@@ -58,17 +58,10 @@ class Problem
     @operands << @known_operands unless @known_operands.empty?
     @operands.flatten! 
     while @operands.length < generator_config[0] do 
-       @operands << rand(generator_config[1]) 
+       @operands << rand(generator_config[1])  #Note: this doesn't trim ops if too many are specified
     end
   end 
-
-  def generate_problem( operands, operator ) 
-    # @operands << @known_operands
-    number_of_variables.times { @operands << rand(@difficulty_level.last) }
-    # @operands.flatten
-    format_question
-  end
-
+  
   def number_of_variables
     @difficulty_level.first
   end
