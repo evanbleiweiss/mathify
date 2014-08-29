@@ -46,27 +46,23 @@ PRIME_NUMBER = {'hint0' =>'0,1 are not primes', 'hint1'=> '2 is the only even pr
 
 
 class Problem
-  def initialize difficulty_level: 'easy', category: 'addition', known_operands: []
+  def initialize difficulty_level: 'easy', operator: 'addition', known_operands: []
     @known_operands = known_operands 
     @difficulty_level = difficulty_level
-    @category = category || ''
+    @operator = operator || ''
+    @operands = []
   end
 
-  def configure_operand_generator(level)
-      # DIFFICULTY_LEVELS.has_key?(difficulty)
-      generator_params = DIFFICULTY_LEVELS[level]
+  def operand_generator
+    generator_config = DIFFICULTY_LEVELS[@difficulty_level]
+    @operands << @known_operands unless @known_operands.empty?
+    @operands.flatten! 
+    while @operands.length < generator_config[0] do 
+       @operands << rand(generator_config[1]) 
+    end
   end 
 
-  # def known_operands(operands = [])
-  #   operands
-  # end
-
-  def known_operands?
-    @known_operands.nil?
-  end
-
-  def generate_problem
-    @operands =  []
+  def generate_problem( operands, operator ) 
     # @operands << @known_operands
     number_of_variables.times { @operands << rand(@difficulty_level.last) }
     # @operands.flatten
@@ -77,22 +73,19 @@ class Problem
     @difficulty_level.first
   end
 
- # def question_generator
- # end
-
   def format_question
     @operands.join(" #{@symbol} ")
   end
 
-  def compute_result(operands,category)
-    send(category, operands)
+  def compute_result(operands,operator)
+    send(operator, operands)
   end
 end
 
 class Multiply < Problem
   def initialize *args
     super
-    @category = 'multiplication'
+    @operator = 'multiplication'
     @symbol = "*"
   end
 
