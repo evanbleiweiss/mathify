@@ -1,7 +1,7 @@
 # Generate problems for evaluation
 # Problems can match on one or more problem categories
 
-OPERATORS = { addition: :+, subtraction: :-, multiplication: :*, division: :/, modulo: :%, primes: :^ }
+OPERATORS = { addition: :+, subtraction: :-, multiplication: :*, division: :/, modulo: :%, prime: :** }
 DIFFICULTY_LEVELS = { 'easy' => [2, 10], 'medium' => [3, 10], 'hard' => [3, 100], 'tough' => [3, 1000] }
 MULTIPLICATION_AIDE = {'hint0'=>'If you have at least one even operand, your product will be even. 
 	If you have two odd operands, your product will be odd.', 'hint1'=> 'If an operand is multiplied by 0, the product will be 0',
@@ -44,48 +44,10 @@ class Problem
   # end
 
 
-  def subtraction
-
-    @operands.inject(&:-)
+  def operation_time
+    operator = OPERATORS[@operator]
+    @operands.inject(&operator)
   end
-
-end
-
-class Multiply < Problem
-  def initialize *args
-    super
-    @operator = 'multiplication'
-    @symbol = "*"
-  end
-
-  def multiply(numbers)
-    numbers.inject(&:*)
-  end
-end
-
-class Addition < Problem
-  def initialize *args
-    super
-    @symbol = "+"
-  end
-
-  def addition(operands)
-    operands.inject(&:+)
-  end
-
-end
-
-
-class Divide < Problem
-  def initialize *args
-    super
-    @symbol = "/"
-  end
-  
-  def division(operands)
-    operands.inject(&:/)
-  end
-
 end
 
 class Exponent < Problem
