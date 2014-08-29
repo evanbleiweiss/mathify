@@ -13,9 +13,6 @@ describe Problem do
   context 'Setting problem constraints' do
     subject { Problem.new(difficulty_level: 'medium') }
 
-    #this is a kind of silly test
-    specify { expect(subject.instance_variable_get(:@difficulty_level)).to eq('medium') }
-
     describe '.operand_generator' do
       context 'with known_operands' do
         let(:problem) { Problem.new(difficulty_level: 'medium', known_operands: [3,4]) }
