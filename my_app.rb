@@ -23,15 +23,8 @@ end
 #   @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
 # end
 
-# get '/problem/multiply.?:format?' do 
-#   @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
-#   @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
-# end
-
 get '/problem/:type/:difficulty/?:operands' do 
-  operands = params[:operands].to_i
-  # operands = %w(params[:operands]) #optional params don't need to be specified
-
+  operands = params[:operands].to_i #have to coerce string to num
   @problem = Problem.new(operator: params[:type], difficulty_level: params[:difficulty], known_operands: [operands])
   @problem.operand_generator
   haml(:problem)
@@ -41,13 +34,6 @@ get '/problem.json/:category' do
   @problem = Problem.new(operator: params[:type], difficulty_level: 'medium', known_operands: [3])
   json @problem.generate_problem
 end
-
-
-# get '/problem' do
-#   @problem = Multiply.new(difficulty_level: 'medium', known_operands: [3])
-#   haml :problem
-# end
-
 
 get '/difficulty' do
   haml :difficulty
