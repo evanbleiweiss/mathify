@@ -41,34 +41,34 @@ describe Problem do
     end
   end
 
-  describe '.operation_time' do
+  describe '.calculate' do
     let(:with_numbers) { subject.operand_generator }
     before { with_numbers }
     subject { Problem.new(operator: operator.to_sym, known_operands: [5.0,2.0,1.0]) }
 
     context 'multiplication' do
       let(:operator) { 'multiplication' }
-      it { expect(subject.operation_time).to eq 10 }
+      it { expect(subject.calculate).to eq 10 }
     end
 
     context 'subtraction' do
       let(:operator) { 'subtraction' }
-      it { expect(subject.operation_time).to eq 2 }
+      it { expect(subject.calculate).to eq 2 }
     end
     
     context 'addition' do
       let(:operator) { 'addition' }
-      it { expect(subject.operation_time).to eq 8 }
+      it { expect(subject.calculate).to eq 8 }
     end
 
     context 'division' do
       let(:operator) { 'division' }
-      it { expect(subject.operation_time).to eq 2.5 }
+      it { expect(subject.calculate).to eq 2.5 }
     end
 
     context 'prime' do
       let(:operator) { 'prime' }
-      it { expect(subject.operation_time).to eq 25 }
+      it { expect(subject.calculate).to eq 25 }
     end
   end
 end

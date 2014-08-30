@@ -45,7 +45,7 @@ class Problem
   # end
 
 
-  def operation_time
+  def calculate 
     operator = OPERATORS[@operator]
     @operands.inject(&operator)
   end
