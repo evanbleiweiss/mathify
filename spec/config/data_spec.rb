@@ -66,8 +66,8 @@ describe Problem do
       it { expect(subject.calculate).to eq 2.5 }
     end
 
-    context 'prime' do
-      let(:operator) { 'prime' }
+    context 'exponent' do
+      let(:operator) { 'exponent' }
       it { expect(subject.calculate).to eq 25 }
     end
   end
