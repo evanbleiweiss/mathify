@@ -23,9 +23,20 @@ end
 #   @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
 # end
 
-get '/problem/:type/:difficulty/?:operands' do 
-  operands = params[:operands].to_i #have to coerce string to num
-  @problem = Problem.new(operator: params[:type], difficulty_level: params[:difficulty], known_operands: [operands])
+get '/problem/:type/:difficulty/?' do
+  @problem = Problem.new operator: params[:type], difficulty_level: params[:difficulty]
+  @problem.operand_generator
+  haml(:problem)
+end
+
+get '/problem/:type/?' do
+  @problem = Problem.new operator: params[:type]
+  @problem.operand_generator
+  haml(:problem)
+end
+
+get '/problem/?' do
+  @problem = Problem.new
   @problem.operand_generator
   haml(:problem)
 end
