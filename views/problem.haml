@@ -1,3 +1,10 @@
 %h1 Alright, so, what is
 
-= @problem.generate_problem
+problem:
+= @problem.format_question
+%br
+%br
+
+result:
+= @problem.calculate
+
