@@ -27,4 +27,17 @@ describe "Mathsosaurus" do
     get '/problem/subtraction/hard'
     expect(last_response).to be_ok
   end
+  context 'with one operand'do
+    it 'accepts known operands' do
+      get '/problem/subtraction/hard/284'
+      expect(last_response).to be_ok
+    end
+  end
+  context 'with many operand'do
+    it 'accepts known operands' do
+      get '/problem/subtraction/hard/284/1'
+      expect(last_response).to be_ok
+    end
+  end
 end
+

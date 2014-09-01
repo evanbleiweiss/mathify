@@ -23,6 +23,19 @@ end
 #   @params[:format].eql?('json') ? json(@problem.generate_problem) : haml(:problem)
 # end
 
+
+get '/problem/:type/:difficulty/*/*?' do
+  @problem = Problem.new operator: params[:type], difficulty_level: params[:difficulty], known_operands: params[:splat].map(&:to_i)
+  @problem.operand_generator 
+  haml(:problem)
+end
+
+get '/problem/:type/:difficulty/*' do
+  @problem = Problem.new operator: params[:type], difficulty_level: params[:difficulty], known_operands: params[:splat].map(&:to_i)
+  @problem.operand_generator
+  haml(:problem)
+end
+
 get '/problem/:type/:difficulty/?' do
   @problem = Problem.new operator: params[:type], difficulty_level: params[:difficulty]
   @problem.operand_generator
